@@ -6,15 +6,13 @@ class Hero {
         this.hero = get(".heroImg_wrap")
         this.positionX = this.hero.offsetLeft;
         this.step = 10;
-        // this.enemyCount = 0;
     }
 
     moveHero () {
         console.log('셋팅')
         
         document.addEventListener('keydown', (e) => {
-            e.preventDefault();
-            
+
             const heroImg = get(".heroImg_wrap img")
             
             if( e.key === "ArrowLeft" ) {
