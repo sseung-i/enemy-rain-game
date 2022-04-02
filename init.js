@@ -4,32 +4,41 @@ class Init {
         this.gameStart = false;
         this.pointWrap = get('.point_wrap');
         this.startBtn = get('.start_btn');
+        this.pointElement = get('.point');
+        this.gameoverEle = get('.gameover')
+        this.hero = null;
+        this.enemy = null;
         this.initValue = {
             enemyCount : 0,
             point : 0,
             speed : 100,
             addTime : 3000,
-            nowRound : 0,
+            nowRound : 1,
             roundCount : 5,
         }
+        
     }
     
     
     btnClick () {
-        if(this.gameStart) {
-            this.gameStart = false;
-            this.startBtn.classList.toggle('hide')
-            //멈추게
-        } else {
-            this.gameStart = true;
-            const hero = new Hero()
-            const enemy = new Enemy(this.gameStart, this.initValue)
-            
-            this.pointWrap.className = 'point_wrap'
-            this.startBtn.classList.toggle('hide')
-            hero.moveHero()
-            enemy.addEnemy()
-        }
+        this.gameStart = true;
+        console.log(this.gameStart)
+
+        this.hero = new Hero()
+        this.enemy = new Enemy(this)
+
+        this.pointElement.innerHTML = '0'
+
+
+        this.pointWrap.classList.toggle('hide')
+        this.startBtn.classList.toggle('hide')
+
+        // this.pointWrap.className = 'point_wrap'
+        // this.startBtn.className = 'start_btn hide'
+
+        this.enemy.roundChange()
+        this.hero.moveHero()
+        this.enemy.addEnemy()
     }
     
     

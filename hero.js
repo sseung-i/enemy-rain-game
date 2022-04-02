@@ -6,6 +6,8 @@ class Hero {
         this.hero = get(".heroImg_wrap")
         this.positionX = this.hero.offsetLeft;
         this.step = 10;
+        // this.init = init;
+        // this.game = game;
     }
 
     moveHero () {
@@ -33,6 +35,7 @@ class Hero {
         })
 
     }
+
 }
 
 
