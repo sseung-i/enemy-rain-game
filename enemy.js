@@ -22,11 +22,10 @@ class Enemy {
 
     gameOver_view () {
         this.init.gameoverEle.classList.toggle('hide')
+
+        //재시작 구현시
         // this.init.pointWrap.classList.toggle('hide')
         // this.init.startBtn.classList.toggle('hide')
-        // setTimeout(() => {
-        //     this.init.gameoverEle.classList.toggle('hide')
-        // }, 3000)
     }
 
     gameOver () {
@@ -35,7 +34,13 @@ class Enemy {
         const nowLiveEnemy = document.querySelectorAll('.enemyWrap').length;
         const lastIntervalId = this.moveEnemy;
         clearInterval(lastIntervalId)
-        
+
+        const speedup_round = 10;
+        if( speedup_round === this.nowRound ) {
+            nowLiveEnemy += 1;
+            speedup_round += 10;
+        }
+
         for(let i = 0; i <= nowLiveEnemy; i++) {
             clearInterval(lastIntervalId + i)
 
@@ -68,7 +73,7 @@ class Enemy {
     dieEnemy (enemyImg, nowEnemy) {
         this.pointElement.innerHTML = `${++this.point}`
         enemyImg.className = "die"
-        console.log('잡았다!!')
+        // console.log('잡았다!!')
         setTimeout(() => {
             nowEnemy.remove();
         }, 500)
@@ -142,17 +147,12 @@ class Enemy {
     }
 
     addInterval (speed, addTime) {
-        // console.log(`roundCount: ${this.roundCount}`)
         
         //새로운 라운드 시작마다 유령 재설정
         this.addTime = addTime;
         this.speed = speed;
         this.intervalName = setInterval(() => {
-            // if(this.gameStart === false) {
-                //     console.log(`intervalName ${this.intervalName}`)
-                //     clearInterval(this.intervalName)
-                //     return
-                // }
+
                 this.setEnemy()
                 if(this.point === this.roundCount) {
                     clearInterval(this.intervalName)
@@ -174,7 +174,6 @@ class Enemy {
     
 
     addEnemy () {
-        console.log(this.intervalName)
         this.addInterval(this.speed, this.addTime)
     }
 }

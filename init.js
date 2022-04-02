@@ -22,7 +22,7 @@ class Init {
     
     btnClick () {
         this.gameStart = true;
-        console.log(this.gameStart)
+        // console.log(this.gameStart)
 
         this.hero = new Hero()
         this.enemy = new Enemy(this)

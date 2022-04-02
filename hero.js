@@ -11,8 +11,6 @@ class Hero {
     }
 
     moveHero () {
-        console.log('셋팅')
-        
         document.addEventListener('keydown', (e) => {
 
             const heroImg = get(".heroImg_wrap img")
