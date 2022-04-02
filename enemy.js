@@ -18,6 +18,8 @@ class Enemy {
         this.moveEnemy = null;
         this.init = init;
         this.gameStart = init.gameStart;
+        this.speedup_round = 10;
+        this.nowLiveEnemyt = 5;
     }
 
     gameOver_view () {
@@ -35,13 +37,7 @@ class Enemy {
         const lastIntervalId = this.moveEnemy;
         clearInterval(lastIntervalId)
 
-        const speedup_round = 10;
-        if( speedup_round === this.nowRound ) {
-            nowLiveEnemy += 1;
-            speedup_round += 10;
-        }
-
-        for(let i = 0; i <= nowLiveEnemy; i++) {
+        for(let i = 0; i <= nowLiveEnemy+5; i++) {
             clearInterval(lastIntervalId + i)
 
         }
@@ -108,7 +104,7 @@ class Enemy {
         
         
         let moveEnemy = setInterval(() => {
-            // console.log(`내가 보고싶은것 ${moveEnemy}`)
+            console.log(`유령 움직임 인터벌 ${moveEnemy}`)
             nowEnemy.style.top = `${enemyY += this.step}px`
             
             //유령과 부딪히면?
@@ -152,8 +148,8 @@ class Enemy {
         this.addTime = addTime;
         this.speed = speed;
         this.intervalName = setInterval(() => {
-
-                this.setEnemy()
+            console.log(`유령 생성 인터벌 ${this.intervalName}`)
+            this.setEnemy()
                 if(this.point === this.roundCount) {
                     clearInterval(this.intervalName)
                     this.nowRound++
